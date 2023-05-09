@@ -1,1 +1,0 @@
-# ticket-purchasing-frontend-react
