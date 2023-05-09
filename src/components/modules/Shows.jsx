@@ -21,17 +21,17 @@ const Shows = () => {
                     { 
                         popularMovies.map(popularMovie => (
                             <div key={popularMovie.id} className="border border-slate-200 bg-white p-[6px] rounded-[3px]">
-                        <a href="" className="h-[160px] md:h-[130px] block">
-                            <img src={someImage} alt="" className="object-cover h-full w-full rounded-[3px]" />
-                        </a>
-                        <div className="py-2 rounded-[3px] p-2 px-[6px] flex flex-col gap-y-2">
-                            <h1 className="text-gray-700 text-lg font-semibold">{popularMovie.title}</h1>
-                            <p className="text-gray-600 text-sm">{popularMovie.description}</p>
-                            <div className="flex justify-end">
-                                <button className="my-1 active:scale-95 bg-opacity-95 hover:bg-opacity-100 text-white px-3 py-[6px]  leading-4 font-medium  text-[12px] bg-[#5F6AF6] rounded-[2px] ">Buy</button>
+                                <a href="" className="h-[160px] md:h-[130px] block">
+                                    <img src={someImage} alt="" className="object-cover h-full w-full rounded-[3px]" />
+                                </a>
+                                <div className="py-2 rounded-[3px] p-2 px-[6px] flex flex-col gap-y-2">
+                                    <h1 className="text-gray-700 text-lg font-semibold">{popularMovie.title}</h1>
+                                    <p className="text-gray-600 text-sm">{popularMovie.description}</p>
+                                    <div className="flex justify-end">
+                                        <button className="my-1 active:scale-95 bg-opacity-95 hover:bg-opacity-100 text-white px-3 py-[6px]  leading-4 font-medium  text-[12px] bg-[#5F6AF6] rounded-[2px] ">Buy</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
                         ))
                     }
                 </div>
