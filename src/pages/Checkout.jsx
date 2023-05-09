@@ -5,11 +5,15 @@ import Payment from "../components/modules/checkout/Payment";
 
 const Checkout = () => {
     return ( 
-        <div>
+        <div className="py-10">
             <PageWrapper>
-                <Delivery />
-                <Payment />
-                <Invoice />
+                <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-6">
+                    <div className="lg:col-span-2 space-y-6">
+                        <Delivery />
+                        <Payment />
+                    </div>
+                    <Invoice />
+                </div>
             </PageWrapper>
         </div>
     );

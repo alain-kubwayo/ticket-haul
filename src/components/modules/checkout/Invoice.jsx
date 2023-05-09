@@ -2,7 +2,7 @@ import { ArrowDown } from "../../common/ArrowUp";
 
 const Invoice = () => {
     return ( 
-        <div>
+        <div className="mt-6 lg:mt-0">
             <div className="border border-slate-300 bg-white py-6 rounded-[3px]">
                 <div className="py-2 rounded-[3px] p-2 px-4 flex flex-col gap-y-2">
                     <div className="text-gray-700 text-xl font-semibold flex justify-between items-center">
@@ -39,7 +39,7 @@ const Invoice = () => {
                         <p>*All Sales Final - No Refunds or Exchanges</p>
                         <div className="flex items-center gap-x-1">
                             <input type="checkbox" />
-                            <label>I have read and agree to the current <span>Terms of Use</span>.</label>
+                            <label>I have read and agree to the current <span className="text-[#026CDF]">Terms of Use</span>.</label>
                         </div>
                         <button className="px-3.5 py-2 bg-[#148016] text-base text-white rounded-sm">Place Order</button>
                         <p className="text-[10px] font-semibold">*Exceptions may apply, see our Terms of Use.</p>
