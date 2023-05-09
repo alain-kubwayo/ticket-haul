@@ -1,6 +1,24 @@
+import { ReactComponent as Diners } from '../../../assets/svgs/diners.svg';
+import { ReactComponent as Maestro } from '../../../assets/svgs/maestro.svg';
+import { ReactComponent as MasterCard } from '../../../assets/svgs/mastercard.svg';
+import { ReactComponent as Discover } from '../../../assets/svgs/discover.svg';
+import { ReactComponent as Visa } from '../../../assets/svgs/visa.svg';
+import { ReactComponent as AmericanExpress } from '../../../assets/svgs/american-express.svg';
+import { ReactComponent as AtmCard } from '../../../assets/svgs/card.svg';
+
+
+
 const PaymentForm = () => {
     return ( 
         <form>
+            <div className="flex mb-4 mt-2">
+                <AmericanExpress className="w-8 h-6 mt-1 mr-2" />
+                <Visa className="w-8 h-6 mt-1 mr-2" />
+                <MasterCard className="w-8 h-6 mt-1 mr-2" />
+                <Discover className="w-8 h-6 mt-1 mr-2" />
+                <Diners className="w-8 h-6 mt-1 mr-2" />
+                <Maestro className="w-8 h-6 mt-1 mr-2" />
+            </div>
             <label className="flex flex-col gap-y-1">
                 <span>Name on Card</span>
                 <input type="text" className="py-2 pr-8 pl-4 border border-slate-300 outline-none" />
@@ -9,17 +27,20 @@ const PaymentForm = () => {
                 <span>Card Number</span>
                 <input type="text" className="py-2 pr-8 pl-4 border border-slate-300 outline-none" />
             </label>
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-x-2">
-                <label className="flex flex-col gap-y-1">
-                    <span>Expiration Date</span>
-                    <input type="text" placeholder="MM/YY" className="py-2 pr-8 pl-4 border border-slate-300 outline-none" />
-                </label>
-                <label className="flex flex-col gap-y-1">
-                    <span>Security Code</span>
-                    <input type="text" placeholder="CVV" className="py-2 pr-8 pl-4 border border-slate-300 outline-none" />
-                </label>
-                <div className="text-xs">
-                    3-digits on back of card
+            <div className="flex items-end gap-x-1">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:gap-x-2">
+                    <label className="flex flex-col gap-y-1 w-1/3">
+                        <span>Expiration Date</span>
+                        <input type="text" placeholder="MM/YY" className="py-2 pr-8 pl-4 border border-slate-300 outline-none" />
+                    </label>
+                    <label className="flex flex-col gap-y-1 w-1/2">
+                        <span>Security Code</span>
+                        <input type="text" placeholder="CVV" className="py-2 pr-8 pl-4 border border-slate-300 outline-none" />
+                    </label>
+                </div>
+                <div className="text-xs bg-sky-700 flex items-center">
+                    <AtmCard />
+                    <p>3-digits on back of card</p>
                 </div>
             </div>
             <label className="flex flex-col gap-y-1">
