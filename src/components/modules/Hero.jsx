@@ -4,7 +4,7 @@ const Hero = () => {
     return ( 
         <div className="bg-[#F7FAFC] py-10">
             <PageWrapper>
-                <div className="grid grid-cols-2">
+                <div className="grid md:grid-cols-2 grid-cols-1">
                     <div>
                         <h1 className="font-bold text-3xl mb-4 text-gray-600">Buy ticket(s) to your favorite <br />
                             <div className="flex items-center">
