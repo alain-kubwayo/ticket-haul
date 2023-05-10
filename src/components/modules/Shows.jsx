@@ -45,13 +45,44 @@ const Shows = () => {
                   {popularMovie.description}
                 </p>
                 <div className="flex justify-end">
+                  <p>${popularMovie.price}</p>
+                  <div className="flex items-center">
+                    <p>Quantity</p>
+                    <select
+                      value={
+                        cart?.items?.find((e) => e.id === popularMovie.id)
+                          ?.quantity || 1
+                      }
+                      disabled={!cart?.items?.find((e) => e.id === popularMovie.id)}
+                      onChange={(event) => {
+                        setcart((e) => {
+                          return {
+                            ...e,
+                            items: e?.items?.map((e) =>
+                              e.id === popularMovie.id
+                                ? { ...e, quantity: parseInt(event.target.value) }
+                                : e
+                            ),
+                          };
+                        });
+                      }}
+                      className="my-1 active:scale-95 bg-opacity-95 hover:bg-opacity-100 text-white px-3 py-[6px]  leading-4 font-medium  text-[12px] bg-[#5F6AF6] rounded-[2px]"
+                    >
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                      <option value={6}>6</option>
+                    </select>
+                  </div>
                   <button
                     onClick={() => {
                       if (cart?.items?.find((e) => e.id === popularMovie.id)) {
                         setcart((e) => {
                           return {
                             ...e,
-                            items: e.items.filter(
+                            items: e?.items?.filter(
                               (e) => e.id !== popularMovie.id
                             ),
                           };
@@ -60,12 +91,14 @@ const Shows = () => {
                         setcart((e) => {
                           return {
                             ...e,
-                            items: [...e.items, popularMovie],
+                            items: e?.items
+                              ? [...e.items, { ...popularMovie, quantity: 1 }]
+                              : [{ ...popularMovie, quantity: 1 }],
                           };
                         });
                       }
                     }}
-                    className="my-1 active:scale-95 bg-opacity-95 hover:bg-opacity-100 text-white px-3 py-[6px]  leading-4 font-medium  text-[12px] bg-[#5F6AF6] rounded-[2px] "
+                    className="my-1 active:scale-95 bg-opacity-95 hover:bg-opacity-100 text-white px-3 py-[6px]  leading-4 font-medium  text-[12px] bg-[#5F6AF6] rounded-[2px]"
                   >
                     {cart?.items?.find((e) => e.id === popularMovie.id)
                       ? "Remove from cart"

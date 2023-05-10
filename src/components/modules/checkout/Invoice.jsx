@@ -4,9 +4,11 @@ import { ArrowDown } from "../../common/ArrowUp";
 const Invoice = () => {
   const { cart } = useCart();
 
-  const total = cart?.items?.reduce((a, b) => a + b.price, 0) || 0;
-
-  console.log(total)
+  const total =
+    cart?.items
+      .map((e) => ({ ...e, subTotal: e.quantity * e.price }))
+      ?.reduce((a, b) => a + b.subTotal, 0) || 0;
+ 
   return (
     <div className="mt-6 lg:mt-0">
       <div className="border border-slate-300 bg-white py-6 rounded-[3px]">
