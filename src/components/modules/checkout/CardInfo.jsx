@@ -8,6 +8,8 @@ const CardInfo = ({ formData, setIsOpenPaymentForm }) => {
     const handleChange = e => {
         if(e.target.value === formData.cvc){
             setCorrectCvc(true);
+        }else{
+            setCorrectCvc(false);
         }
     }
 
