@@ -14,7 +14,7 @@ const Navbar = () => {
               Ticket Haul
             </h1>
           </Link>
-          <Link to="/checkout">
+          <Link to={cart?.items?.length ? "/checkout" : "#"}>
             <div className="flex gap-x-2">
               <div className="w-12 h-12 p-2 bg-gray-200 rounded-full">
                 <Cart className="w-full h-full" />

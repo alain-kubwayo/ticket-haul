@@ -6,18 +6,10 @@ import PaymentForm from "./PaymentForm";
 import CheckMark from "../../common/CheckMark";
 import { ReactComponent as PayPal } from "../../../assets/svgs/paypal.svg";
 import { ReactComponent as Klarna } from "../../../assets/svgs/klarna.svg";
-import { useState } from "react";
+import { usePayment } from "../../../context/payment";
 
 const Payment = () => {
-  const [isOpenPaymentForm, setIsOpenPaymentForm] = useState(false);
-  const [formData, setFormData] = useState(null)
-
-  const handleClick = () => {
-    setIsOpenPaymentForm(true);
-  };
-
-  console.log(formData);
-
+const {setIsOpenPaymentForm, isOpenPaymentForm} = usePayment()
 
   return (
     <div className="border border-slate-300 bg-white p-4 rounded-[3px]">
@@ -33,20 +25,30 @@ const Payment = () => {
           Use Credit / Debit Card
         </h2>
         <div className="lg:px-4">
-          <a href="#" className="flex items-center mb-4 md:mb-0" onClick={()=>setIsOpenPaymentForm(false)}>
+          <a
+            href="#"
+            className="flex items-center mb-4 md:mb-0"
+            onClick={() => setIsOpenPaymentForm(false)}
+          >
             <ArrowLeft />
             <p className="text-[#026CDF] ml-1">Back to Stored Cards</p>
           </a>
-          {isOpenPaymentForm && <PaymentForm setFormData={setFormData} formData={formData} setIsOpenPaymentForm={setIsOpenPaymentForm} />}
+          {isOpenPaymentForm && (
+            <PaymentForm/>
+          )}
         </div>
         <div>
-          <CardInfo formData={formData} setIsOpenPaymentForm={setIsOpenPaymentForm} />
+          {!isOpenPaymentForm && (
+            <CardInfo
+              setIsOpenPaymentForm={setIsOpenPaymentForm}
+            />
+          )}
           {!isOpenPaymentForm && (
             <div className="flex items-center pb-6 border-b border-slate-200">
               <Add />
               <div
                 className="text-base text-[#026CDF] font-semibold ml-4 cursor-pointer"
-                onClick={handleClick}
+                onClick={() =>  setIsOpenPaymentForm(true)}
               >
                 Add New Card
               </div>
