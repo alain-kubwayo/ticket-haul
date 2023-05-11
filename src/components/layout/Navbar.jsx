@@ -5,6 +5,8 @@ import { ReactComponent as Cart } from "../../assets/svgs/cart.svg";
 
 const Navbar = () => {
   const { cart } = useCart();
+  const numberOfItemsInInCart = cart?.items?.reduce((a, b) => a + b.quantity, 0);
+  
   return (
     <nav>
       <PageWrapper>
@@ -23,7 +25,7 @@ const Navbar = () => {
               </div>
               <div>
                 <h3 className="font-bold text-gray-700">My Cart</h3>
-                <p className="text-gray-500">{cart?.items?.reduce((a, b) => a + b.quantity, 0)} {!cart?.items?.length ? 'item' : cart?.items?.length === 1 ? 'item' : 'items'}</p>
+                <p className="text-gray-500">{numberOfItemsInInCart} {numberOfItemsInInCart <= 1 ? 'item' : 'items'}</p>
               </div>
             </div>
           </Link>

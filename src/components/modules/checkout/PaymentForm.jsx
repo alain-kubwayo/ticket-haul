@@ -42,7 +42,6 @@ const PaymentForm = () => {
       onSubmit={handleSubmit((data) => {
         if (meta.error !== undefined) return;
         setIsOpenPaymentForm(false);
-        console.log({cardToEdit})
         onSubmitPayement({ ...data, id: cardToEdit.id });
       })}
     >
@@ -233,7 +232,6 @@ const PaymentForm = () => {
           type="submit"
           className="hover:bg-[#026CDF]/50 bg-[#026CDF] py-2 px-4 text-white rounded-sm text-base"
         >
-          {/* {!paymentToEdit ? "Add new card" : "Edit card"}  */}
           Add new card
         </button>
       </div>
