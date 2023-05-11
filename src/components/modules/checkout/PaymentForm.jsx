@@ -17,14 +17,13 @@ const PaymentForm = () => {
     formState: { errors },
   } = useForm();
 
-
   const {
     getCardNumberProps,
     getCardImageProps,
     getExpiryDateProps,
     getCVCProps,
     wrapperProps,
-    meta
+    meta,
   } = usePaymentInputs();
 
   const {
@@ -98,7 +97,7 @@ const PaymentForm = () => {
               })}
             />
           </label>
-          
+
           <label className="flex flex-col w-full md:w-1/2 gap-y-1">
             <span>Security Code</span>
             <input
@@ -120,19 +119,13 @@ const PaymentForm = () => {
       </div>
       <ul className="ml-3 list-disc">
         {meta.erroredInputs.cardNumber && (
-          <li className="text-red-400">
-            {meta.erroredInputs.cardNumber}
-          </li>
+          <li className="text-red-400">{meta.erroredInputs.cardNumber}</li>
         )}
         {meta.erroredInputs.expiryDate && (
-          <li className="text-red-400">
-            {meta.erroredInputs.expiryDate}
-          </li>
+          <li className="text-red-400">{meta.erroredInputs.expiryDate}</li>
         )}
         {meta.erroredInputs.cvc && (
-          <li className="text-red-400">
-            {meta.erroredInputs.cvc}
-          </li>
+          <li className="text-red-400">{meta.erroredInputs.cvc}</li>
         )}
       </ul>
       <label className="flex flex-col gap-y-1">
@@ -169,10 +162,10 @@ const PaymentForm = () => {
                 required: "Please your billing address",
               })}
             />
-            {errors.address && (
-              <p className="text-red-400">{errors.address.message}</p>
-            )}
           </div>
+          {errors.address && (
+            <p className="text-red-400">{errors.address.message}</p>
+          )}
         </label>
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-x-1">
           <label className="flex flex-col w-full gap-y-1">
@@ -186,8 +179,10 @@ const PaymentForm = () => {
                 required: "Please add your city",
               })}
             />
+            {errors.city && (
+              <p className="text-red-400">{errors.city.message}</p>
+            )}
           </label>
-          {errors.city && <p className="text-red-400">{errors.city.message}</p>}
           <label className="flex flex-col w-full gap-y-1">
             <span>Postal Code</span>
             <input
@@ -195,7 +190,7 @@ const PaymentForm = () => {
               name="postalCode"
               className="py-2 pl-4 pr-8 border outline-none border-slate-300"
               {...register("postalCode", {
-                value: cardToEdit?.postalCode || "" ,
+                value: cardToEdit?.postalCode || "",
                 required: "Please add postal code",
               })}
             />
@@ -222,9 +217,9 @@ const PaymentForm = () => {
       </div>
       <div className="flex justify-center lg:justify-end gap-x-4">
         <button
-        onClick={() => {
-          setIsOpenPaymentForm(false);
-        }}
+          onClick={() => {
+            setIsOpenPaymentForm(false);
+          }}
         >
           Cancel
         </button>
