@@ -50,9 +50,13 @@ npm run dev
 Once the project is set up locally and the local development server is up and running, the project can be tested in the following fashion:
 
 * The homepage lists upcoming shows and the user can select one or more shows and adjust the quantity/number of tickets for each show. 
-* The user will not be able to go to view what's in the car until they add at least 1 ticket to the cart. Attempting to do so, will alert a message to inform them that they should add to cart before viewing the checkout page.
+
+* The user will not be able to go to view what's in the cart until they add at least 1 ticket to the cart. Attempting to do so, will alert a message to inform them that they should add to cart before viewing the checkout page.
+
 * Once, the cart is no longer empty, a user can then view what's in the cart by clicking at the cart icon at the top right icon in navigation. 
-* A checkout page will display information about ticket(s) baught the user will hae to provide the billing information and accept terms before placing an order.
+
+* A checkout page will display information about ticket(s) bought the user will have to provide the billing information and accept terms before placing an order.
+
 * Once the button to place order is no longer disabled, a user can then click and will see a loading message followed by the success message if the order was successful!
 
 ## Credit Card Testing
@@ -61,7 +65,7 @@ To test for valid card numbers, the user should consider using either of the fol
 
 * User's own real credit card information (Card number, expiration date, and CVC)
 
-* One of the testing numbers exposed by the ATM manufacturing companies. See the list below:
+* One of the testing numbers exposed by relevant companies. See the list below:
 
 | Brand | Number            | CVC           | Date              |
 |-------|-------------------|---------------|-------------------|
@@ -72,7 +76,7 @@ To test for valid card numbers, the user should consider using either of the fol
 | Discover  | 6011111111111117  | Any 3 digits  | Any future date   |
 | Diners Club  | 3056930009020004  | Any 3 digits  | Any future date   |
 
-Please visit [this link by Stripe](https://stripe.com/docs/testing) for a full list of the extensive list.
+Please visit [this link by Stripe](https://stripe.com/docs/testing) for a full list.
 
 
 
