@@ -21,7 +21,7 @@ const Shows = () => {
   return (
     <div className="py-20">
       <PageWrapper>
-        <h2 className="text-center text-gray-500 text-2xl font-bold uppercase tracking-wide mb-10">
+        <h2 className="mb-10 text-2xl font-bold tracking-wide text-center text-gray-500 uppercase">
           Upcoming shows
         </h2>
         <div className="grid grid-cols-1 gap-5 md:gap-20 md:grid-cols-2 lg:grid-cols-3">
@@ -38,15 +38,13 @@ const Shows = () => {
                 />
               </a>
               <div className="py-2 rounded-[3px] p-2 px-[6px] flex flex-col gap-y-2">
-                <h1 className="text-gray-700 text-lg font-semibold">
+                <h1 className="text-lg font-semibold text-gray-700 capitalize">
                   {popularMovie.title}
                 </h1>
-                <p className="text-gray-600 text-sm">
-                  {popularMovie.description}
-                </p>
-                <div className="flex justify-end">
-                  <p>${popularMovie.price}</p>
-                  <div className="flex items-center">
+                <p className="text-[#6F7287] text-sm">Marriot Hotel • Kigali</p>
+                <p className="text-[#6F7287] text-sm">${popularMovie.price.toFixed(2)}</p>
+                <div className="flex justify-between">
+                  <div className="flex items-center gap-x-2">
                     <p>Quantity</p>
                     <select
                       value={
@@ -66,7 +64,7 @@ const Shows = () => {
                           };
                         });
                       }}
-                      className="my-1 active:scale-95 bg-opacity-95 hover:bg-opacity-100 text-white px-3 py-[6px]  leading-4 font-medium  text-[12px] bg-[#5F6AF6] rounded-[2px]"
+                      className="my-1 active:scale-95 bg-opacity-95 hover:bg-opacity-100 text-gray-700 outline-none border border-gray-300 px-3 py-[6px]  leading-4 font-medium  text-[12px] bg-gray-200 rounded-[2px]"
                     >
                       <option value={1}>1</option>
                       <option value={2}>2</option>
