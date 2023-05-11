@@ -17,38 +17,42 @@ const PaymentForm = () => {
     formState: { errors },
   } = useForm();
 
+
   const {
-    meta,
     getCardNumberProps,
     getCardImageProps,
     getExpiryDateProps,
     getCVCProps,
-    wrapperProps
+    wrapperProps,
+    meta
   } = usePaymentInputs();
 
   const {
     onSubmitPayement,
     handlePayementFormInput,
-    cardInfo,
+    // cardInfo,
     country,
     handleNoPayementFormInputs,
     setIsOpenPaymentForm,
-    setCardInfo
+    setCardInfo,
+    cardToEdit,
   } = usePayment();
+
+  // console.log(meta.erroredInputs.cardNumber);
 
   return (
     <form
-    onSubmit={handleSubmit((data) => {
+      onSubmit={handleSubmit((data) => {
         if (meta.error !== undefined) return;
         setIsOpenPaymentForm(false);
-        onSubmitPayement(data)
-        setCardInfo({
-            cardNumber: "",
-    expiryDate: "",
-    cvc: "",
-        })
-        
-    })}
+        console.log({cardToEdit})
+        onSubmitPayement({ ...data, id: cardToEdit.id });
+        // setCardInfo({
+        //   cardNumber: "",
+        //   expiryDate: "",
+        //   cvc: "",
+        // });
+      })}
     >
       <div className="flex mt-2 mb-4">
         <AmericanExpress className="w-8 h-6 mt-1 mr-2" />
@@ -63,8 +67,12 @@ const PaymentForm = () => {
         <input
           type="text"
           name="cardName"
+          // defaultValue={cardToEdit?.cardName || ""}
           className="py-2 pl-4 pr-8 border outline-none border-slate-300"
-          {...register("cardName", { required: "Card name is required" })}
+          {...register("cardName", {
+            value: cardToEdit?.cardName || "",
+            required: "Card name is required",
+          })}
         />
         {errors.cardName && (
           <p className="text-red-400">{errors.cardName.message}</p>
@@ -78,8 +86,10 @@ const PaymentForm = () => {
             type="text"
             className="py-2 pl-4 pr-8 border outline-none border-slate-300"
             name="cardNumber"
-            value={cardInfo.cardNumber}
-            {...getCardNumberProps({ onChange: handlePayementFormInput })}
+            defaultValue={cardToEdit.cardNumber}
+            {...getCardNumberProps({
+              onChange: handlePayementFormInput,
+            })}
           />
         </PaymentInputsWrapper>
       </label>
@@ -92,20 +102,24 @@ const PaymentForm = () => {
               placeholder="MM/YY"
               className="py-2 pl-4 pr-8 border outline-none border-slate-300"
               name="expiryDate"
-              value={cardInfo.expiryDate}
-              {...getExpiryDateProps({ onChange: handlePayementFormInput })}
+              defaultValue={cardToEdit.expiryDate || ""}
+              {...getExpiryDateProps({
+                onChange: handlePayementFormInput,
+              })}
             />
           </label>
+          
           <label className="flex flex-col w-1/2 gap-y-1">
             <span>Security Code</span>
             <input
               type="text"
               placeholder="CVV"
               name="cvc"
-              value={cardInfo.cvc}
-              // defaultValue={formData.cvc}
+              defaultValue={cardToEdit.cvc}
               className="py-2 pl-4 pr-8 border outline-none border-slate-300"
-              {...getCVCProps({ onChange: handlePayementFormInput })}
+              {...getCVCProps({
+                onChange: handlePayementFormInput,
+              })}
             />
           </label>
         </div>
@@ -114,13 +128,30 @@ const PaymentForm = () => {
           <p>3-digits on back of card</p>
         </div>
       </div>
+      <ul className="ml-3 list-disc">
+        {meta.erroredInputs.cardNumber && (
+          <li className="text-red-400">
+            {meta.erroredInputs.cardNumber}
+          </li>
+        )}
+        {meta.erroredInputs.expiryDate && (
+          <li className="text-red-400">
+            {meta.erroredInputs.expiryDate}
+          </li>
+        )}
+        {meta.erroredInputs.cvc && (
+          <li className="text-red-400">
+            {meta.erroredInputs.cvc}
+          </li>
+        )}
+      </ul>
       <label className="flex flex-col gap-y-1">
         <span>Country</span>
         <select
           className="py-2 pl-4 pr-8 border outline-none border-slate-300"
           name="country"
-          value={country}
           {...register("country", {
+            value: cardToEdit.country || country,
             validate: () => Boolean(country) || "Country is required",
           })}
           onChange={handleNoPayementFormInputs}
@@ -144,19 +175,13 @@ const PaymentForm = () => {
               name="address"
               className="py-2 pl-4 pr-8 border outline-none border-slate-300"
               {...register("address", {
+                value: cardToEdit?.address || "",
                 required: "Please your billing address",
               })}
             />
             {errors.address && (
               <p className="text-red-400">{errors.address.message}</p>
             )}
-            <div className="text-sm text-[#026CDF] cursor-pointer">
-              + Add Unit # / Address Line 2
-            </div>
-            {/* <label className="flex flex-col gap-y-1">
-                            <span>Address 2 (Optional)</span>
-                            <input type="text" className="py-2 pl-4 pr-8 border outline-none border-slate-300" />
-                        </label> */}
           </div>
         </label>
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-x-1">
@@ -166,7 +191,10 @@ const PaymentForm = () => {
               type="text"
               name="city"
               className="py-2 pl-4 pr-8 border outline-none border-slate-300"
-              {...register("city", { required: "Please add your city" })}
+              {...register("city", {
+                value: cardToEdit?.city || "",
+                required: "Please add your city",
+              })}
             />
           </label>
           {errors.city && <p className="text-red-400">{errors.city.message}</p>}
@@ -177,6 +205,7 @@ const PaymentForm = () => {
               name="postalCode"
               className="py-2 pl-4 pr-8 border outline-none border-slate-300"
               {...register("postalCode", {
+                value: cardToEdit?.postalCode || "" ,
                 required: "Please add postal code",
               })}
             />
@@ -192,6 +221,7 @@ const PaymentForm = () => {
             name="phoneNumber"
             className="py-2 pl-4 pr-8 border outline-none border-slate-300"
             {...register("phoneNumber", {
+              value: cardToEdit?.phoneNumber || "",
               required: "Please add your phone number",
             })}
           />
@@ -200,20 +230,20 @@ const PaymentForm = () => {
           )}
         </label>
       </div>
-      <label className="flex items-center gap-x-2">
-        <input type="checkbox" />
-        <span>Save this card for future purchases</span>
-      </label>
-      <p className="mb-4 text-xs">Set as a primary card for:</p>
-      <label className="flex items-center gap-x-2">
-        <input type="checkbox" />
-        <span>Payment</span>
-      </label>
-      <p className="pl-8 mb-2 text-xs">Set as a primary card for:</p>
       <div className="flex justify-center lg:justify-end gap-x-4">
-        <button>Cancel</button>
-        <button className="hover:bg-[#026CDF]/50 bg-[#026CDF] py-2 px-4 text-white rounded-sm text-base">
-          Add New Card
+        <button
+        // onClick={() => {
+        //   setPaymentToEdit(undefined);
+        // }}
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="hover:bg-[#026CDF]/50 bg-[#026CDF] py-2 px-4 text-white rounded-sm text-base"
+        >
+          {/* {!paymentToEdit ? "Add new card" : "Edit card"}  */}
+          Add new card
         </button>
       </div>
     </form>

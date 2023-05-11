@@ -3,6 +3,7 @@ import { useCart } from "../../../context/cart";
 import { ArrowDown, ArrowUp } from "../../common/ArrowUp";
 import { usePayment } from "../../../context/payment";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../common/Modal";
 
 const Invoice = () => {
   const navigate = useNavigate()
@@ -11,6 +12,7 @@ const Invoice = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [paymentProcessing, setPaymentProcessing] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
 
   const handleClick = () => {
@@ -27,18 +29,27 @@ const Invoice = () => {
       ?.reduce((a, b) => a + b.subTotal, 0) || 0;
 
   const handlePlaceOrder = () => {
-    if(!isChecked && !payment?.length )return;
+    console.log(payment)
+    if(!isChecked || !payment?.length )return;
     setPaymentProcessing(true);
+    setShowModal(true);
     setTimeout(() => {
       setPaymentProcessing(false);
+    }, 3000)
+
+    setTimeout(() => {
+      setShowModal(false);
       setPayment(localStorage.clear())
       setcart(localStorage.clear())
       navigate('/')
-    }, 3000)
-
+    }, 5000)
   }
 
+  
+
   return (
+    <>
+    {showModal && <Modal paymentProcessing={paymentProcessing} />}
     <div className="mt-6 lg:mt-0">
       <div className="border border-slate-300 bg-white py-6 rounded-[3px]">
         <div className="py-2 rounded-[3px] p-2 px-4 flex flex-col gap-y-2">
@@ -93,7 +104,7 @@ const Invoice = () => {
             </div>
             <button 
               onClick={handlePlaceOrder}
-              className={`px-3.5 py-2  text-base text-white rounded-sm ${isChecked && payment?.length ? "bg-[#148016]":'bg-[#148016]/40'}`}
+              className={`px-3.5 py-2  text-base text-white rounded-sm ${isChecked && payment?.length ? "bg-[#148016]":'bg-[#148016]/40 cursor-not-allowed'}`}
               disabled={!isChecked}
             >
               Place Order
@@ -105,6 +116,7 @@ const Invoice = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

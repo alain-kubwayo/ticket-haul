@@ -3,6 +3,8 @@ const PaymentContext = createContext();
 
 export const PaymentProvider = ({ children }) => {
   const [isOpenPaymentForm, setIsOpenPaymentForm] = useState(false);
+  const [cardToEdit, setCardToEdit] = useState({});
+
   const [cardInfo, setCardInfo] = useState({
     cardNumber: "",
     expiryDate: "",
@@ -11,7 +13,7 @@ export const PaymentProvider = ({ children }) => {
 
   const [country, setCountry] = useState("");
   const [payment, setPayment] = useState(
-    () => JSON.parse(localStorage.getItem("payment")) || []
+    () => JSON.parse(localStorage.getItem("payement")) || []
   );
 
   const handlePayementFormInput = useCallback((event) => {
@@ -25,22 +27,60 @@ export const PaymentProvider = ({ children }) => {
     setCountry(event.target.value);
   }, []);
 
-  const onSubmitPayement = (data) => {
+  const deletePayment = (pay) => {
+    const filtered = payment.filter((e) => e.id !== pay.id);
+    setPayment(filtered);
+    localStorage.setItem("payement", JSON.stringify(filtered));
+  };
+
+  const updateCard = (data) => {
+    console.log({ updatedData: { ...data, ...cardInfo } });
+    const existingPayements =
+      JSON.parse(localStorage.getItem("payement")) || [];
+    const updatedPayments = existingPayements.map((payement) => {
+      if (payement.id !== data.id) return payement;
+      return {
+        cardName: data.cardName || cardToEdit.name,
+        cardNumber: cardInfo.cardNumber || cardToEdit.cardNumber,
+        id: data.id || cardToEdit.id,
+        expiryDate: cardInfo.expiryDate || cardToEdit.expiryDate,
+        cvc: cardInfo.cvc || cardToEdit.cvc,
+        country: data.country || cardToEdit.country,
+        address: data.address || cardToEdit.address,
+        city: data.city || cardToEdit.city,
+        postalCode: data.postalCode || cardToEdit.postalCode,
+        phoneNumber: data.phoneNumber || cardToEdit.phoneNumber,
+      };
+    });
+
+    localStorage.setItem("payement", JSON.stringify(updatedPayments));
+    setPayment(updatedPayments);
+    setCardToEdit({});
+  };
+
+  const createCard = (data) => {
     // update the existing payement in the local storage
     const existingPayements =
       JSON.parse(localStorage.getItem("payement")) || [];
+    const newPayementCard =   { ...data, ...cardInfo, id: payment?.length + 1 }
+
     const updatedPayements = JSON.stringify([
       ...existingPayements,
-      { ...data, ...cardInfo },
+      newPayementCard,
     ]);
     localStorage.setItem("payement", updatedPayements);
 
     // update the existing payement in the app state
     console.log("submit", [{ ...data, ...cardInfo }]);
     setPayment((prev) => {
-      if (prev) return [...prev, { ...data, ...cardInfo }];
-      return [{ ...data, ...cardInfo }];
+      if (prev) return [...prev, newPayementCard];
+      return [newPayementCard];
     });
+  };
+
+  const onSubmitPayement = (data) => {
+    if (data.id) updateCard(data);
+    else createCard(data);
   };
 
   return (
@@ -55,7 +95,10 @@ export const PaymentProvider = ({ children }) => {
         country,
         isOpenPaymentForm,
         setIsOpenPaymentForm,
-        setCardInfo
+        setCardInfo,
+        deletePayment,
+        cardToEdit,
+        setCardToEdit,
       }}
     >
       {children}
