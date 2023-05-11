@@ -1,4 +1,3 @@
-import Add from "../../common/Add";
 import ArrowLeft from "../../common/ArrowLeft";
 import { ReactComponent as PayPalSlogan } from "../../../assets/svgs/paypal-slogan.svg";
 import CardInfo from "./CardInfo";
@@ -6,10 +5,12 @@ import PaymentForm from "./PaymentForm";
 import CheckMark from "../../common/CheckMark";
 import { ReactComponent as PayPal } from "../../../assets/svgs/paypal.svg";
 import { ReactComponent as Klarna } from "../../../assets/svgs/klarna.svg";
+import { ReactComponent as Card } from "../../../assets/svgs/card.svg";
+import { ReactComponent as Add } from "../../../assets/svgs/add.svg";
 import { usePayment } from "../../../context/payment";
 
 const Payment = () => {
-const {setIsOpenPaymentForm, isOpenPaymentForm} = usePayment()
+  const { setIsOpenPaymentForm, isOpenPaymentForm, setCardToEdit } = usePayment();
 
   return (
     <div className="border border-slate-300 bg-white p-4 rounded-[3px]">
@@ -33,22 +34,24 @@ const {setIsOpenPaymentForm, isOpenPaymentForm} = usePayment()
             <ArrowLeft />
             <p className="text-[#026CDF] ml-1">Back to Stored Cards</p>
           </a>
-          {isOpenPaymentForm && (
-            <PaymentForm/>
-          )}
+          {isOpenPaymentForm && <PaymentForm />}
         </div>
         <div>
           {!isOpenPaymentForm && (
-            <CardInfo
-              setIsOpenPaymentForm={setIsOpenPaymentForm}
-            />
+            <CardInfo setIsOpenPaymentForm={setIsOpenPaymentForm} />
           )}
           {!isOpenPaymentForm && (
             <div className="flex items-center pb-6 border-b border-slate-200">
-              <Add />
+              <Add onClick={() => setIsOpenPaymentForm(true)} />
+              <Card
+                className="ml-4"
+                onClick={() => setIsOpenPaymentForm(true)}
+              />
               <div
                 className="text-base text-[#026CDF] font-semibold ml-4 cursor-pointer"
-                onClick={() =>  setIsOpenPaymentForm(true)}
+                onClick={() => {
+                  setCardToEdit({})
+                  setIsOpenPaymentForm(true)}}
               >
                 Add New Card
               </div>
@@ -58,7 +61,7 @@ const {setIsOpenPaymentForm, isOpenPaymentForm} = usePayment()
         {!isOpenPaymentForm && (
           <div className="px-4 pt-6 text-sm">
             <h2 className="pt-0 pb-4 text-base font-semibold">Or Pay With</h2>
-            <div className="flex gap-x-4">
+            <div className="flex flex-col gap-y-4 sm:gap-y-0 sm:flex-row gap-x-4">
               <button className="bg-[#ffc439] flex items-center justify-center px-10 py-2 rounded-md">
                 <PayPal className="w-12 h-auto" />
               </button>

@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav>
       <PageWrapper>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-center justify-center sm:flex-row sm:items-center sm:justify-between">
           <Link to="/">
             <h1 className="relative text-[#5F6AF6] font-extrabold text-2xl py-4 pr-0 pl-2 before:content-[''] before:absolute before:left-[40%] before:bottom-[16px] before:-z-10 before:w-[100px] before:h-[10px] before:bg-indigo-300/50 before:transform before:-skew-x-12 before:-translate-x-1/2">
               Ticket Haul
@@ -23,7 +23,7 @@ const Navbar = () => {
               </div>
               <div>
                 <h3 className="font-bold text-gray-700">My Cart</h3>
-                <p className="text-gray-500">{cart?.items?.reduce((a, b) => a + b.quantity, 0)} items</p>
+                <p className="text-gray-500">{cart?.items?.reduce((a, b) => a + b.quantity, 0)} {!cart?.items?.length ? 'item' : cart?.items?.length === 1 ? 'item' : 'items'}</p>
               </div>
             </div>
           </Link>

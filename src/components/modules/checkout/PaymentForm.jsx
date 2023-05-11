@@ -34,11 +34,8 @@ const PaymentForm = () => {
     country,
     handleNoPayementFormInputs,
     setIsOpenPaymentForm,
-    setCardInfo,
     cardToEdit,
   } = usePayment();
-
-  // console.log(meta.erroredInputs.cardNumber);
 
   return (
     <form
@@ -47,11 +44,6 @@ const PaymentForm = () => {
         setIsOpenPaymentForm(false);
         console.log({cardToEdit})
         onSubmitPayement({ ...data, id: cardToEdit.id });
-        // setCardInfo({
-        //   cardNumber: "",
-        //   expiryDate: "",
-        //   cvc: "",
-        // });
       })}
     >
       <div className="flex mt-2 mb-4">
@@ -67,7 +59,6 @@ const PaymentForm = () => {
         <input
           type="text"
           name="cardName"
-          // defaultValue={cardToEdit?.cardName || ""}
           className="py-2 pl-4 pr-8 border outline-none border-slate-300"
           {...register("cardName", {
             value: cardToEdit?.cardName || "",
@@ -93,9 +84,9 @@ const PaymentForm = () => {
           />
         </PaymentInputsWrapper>
       </label>
-      <div className="flex items-end gap-x-1">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-x-2">
-          <label className="flex flex-col w-1/3 gap-y-1">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-4">
+        <div className="flex flex-col col-span-3 lg:flex-row lg:items-center lg:gap-x-2">
+          <label className="flex flex-col w-full md:w-1/2 gap-y-1">
             <span>Expiration Date</span>
             <input
               type="text"
@@ -109,7 +100,7 @@ const PaymentForm = () => {
             />
           </label>
           
-          <label className="flex flex-col w-1/2 gap-y-1">
+          <label className="flex flex-col w-full md:w-1/2 gap-y-1">
             <span>Security Code</span>
             <input
               type="text"
@@ -123,7 +114,7 @@ const PaymentForm = () => {
             />
           </label>
         </div>
-        <div className="flex items-center text-xs bg-sky-700">
+        <div className="flex items-center w-full col-span-2 mt-4 text-xs lg:mt-8">
           <AtmCard />
           <p>3-digits on back of card</p>
         </div>
@@ -232,9 +223,9 @@ const PaymentForm = () => {
       </div>
       <div className="flex justify-center lg:justify-end gap-x-4">
         <button
-        // onClick={() => {
-        //   setPaymentToEdit(undefined);
-        // }}
+        onClick={() => {
+          setIsOpenPaymentForm(false);
+        }}
         >
           Cancel
         </button>

@@ -57,9 +57,9 @@ const Invoice = () => {
             {paymentProcessing && <div>Loading...</div>}
             <h3>Total</h3>
             <div className="flex items-center gap-x-1">
-              <p>${total}</p>
+              <p>${total.toFixed(2)}</p>
               <button onClick={handleClick}>
-                {isOpen ? <ArrowDown /> : <ArrowUp />}
+                {isOpen ? <ArrowUp /> : <ArrowDown />}
               </button>
             </div>
           </div>

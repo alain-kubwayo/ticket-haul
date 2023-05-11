@@ -14,7 +14,7 @@ const CardInfo = () => {
           key={p?.cardName}
           className="border mb-2 border-slate-300 p-4 rounded-[3px] bg-sky-100"
         >
-          <div className="flex items-start gap-x-4">
+          <div className="flex flex-col items-start gap-y-2 sm:gap-y-0 sm:flex-row gap-x-4">
             <input type="radio" />
             <div>
               <div className="flex gap-x-4">
@@ -29,7 +29,7 @@ const CardInfo = () => {
                     }
                   </h3>
                   <p>
-                    {p?.cardName} | exp. {p?.expiryDate}{" "}
+                    {p?.cardName} | exp. {p?.expiryDate.split(' ').join('')}{" "}
                   </p>
                   <div>
                     <button
@@ -53,7 +53,7 @@ const CardInfo = () => {
                 </div>
               </div>
               <div className="flex items-center">
-                <label className="flex flex-col w-1/3 gap-y-1">
+                <label className="flex flex-col w-full sm:w-1/3 gap-y-1">
                   <span>Security Code</span>
                   <div>
                     <div className="relative">
