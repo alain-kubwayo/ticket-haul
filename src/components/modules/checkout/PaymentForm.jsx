@@ -140,10 +140,17 @@ const PaymentForm = () => {
           onChange={handleNoPayementFormInputs}
         >
           <option value=""></option>
-          <option value="US">US</option>
+          <option value="AO">Angola</option>
+          <option value="AU">Australia</option>
+          <option value="CL">Chile</option>
+          <option value="DK">Denmark</option>
+          <option value="EG">Egypt</option>
+          <option value="GM">Gambia</option>
+          <option value="GH">Ghana</option>
           <option value="RW">Rwanda</option>
-          <option value="IN">India</option>
-          <option value="BU">Burundi</option>
+          <option value="YE">Yemen</option>
+          <option value="ZM">Zambia</option>
+          <option value="ZW">Zimbabwe</option>
         </select>
         {errors.country && !country && (
           <p className="text-red-400">{errors.country.message}</p>
@@ -156,7 +163,7 @@ const PaymentForm = () => {
             <input
               type="text"
               name="address"
-              className="py-2 pl-4 pr-8 border outline-none border-slate-300"
+              className="w-full py-2 pl-4 pr-8 border outline-none border-slate-300"
               {...register("address", {
                 value: cardToEdit?.address || "",
                 required: "Please your billing address",

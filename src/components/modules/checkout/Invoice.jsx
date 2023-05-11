@@ -29,7 +29,6 @@ const Invoice = () => {
       ?.reduce((a, b) => a + b.subTotal, 0) || 0;
 
   const handlePlaceOrder = () => {
-    console.log(payment)
     if(!isChecked || !payment?.length )return;
     setPaymentProcessing(true);
     setShowModal(true);
