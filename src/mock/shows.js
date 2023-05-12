@@ -10,7 +10,7 @@ const shows = [
     {
         "id": 1,
         "title": "the great gigantic gala",
-        "url": london,
+        "image": london,
         "price": 23,
         "quantity": 1,
         "city": "London",
@@ -19,7 +19,7 @@ const shows = [
     {
         "id": 2,
         "title": "amazing acrobats",
-        "url": auckland,
+        "image": auckland,
         "price": 19,
         "quantity": 1,
         "city": "Auckland",
@@ -28,7 +28,7 @@ const shows = [
     {
         "id": 3,
         "title": "fabulous fireworks frenzy",
-        "url": vancouver,
+        "image": vancouver,
         "price": 12,
         "quantity": 1,
         "city": "Vancouver",
@@ -37,7 +37,7 @@ const shows = [
     {
         "id": 4,
         "title": "epic entertainment extravaganza",
-        "url": liverpool,
+        "image": liverpool,
         "price": 11,
         "quantity": 1,
         "city": "Liverpool",
@@ -46,7 +46,7 @@ const shows = [
     {
         "id": 5,
         "title": "rockin' the night away",
-        "url": lagos,
+        "image": lagos,
         "price": 8.5,
         "quantity": 1,
         "city": "Lagos",
@@ -55,7 +55,7 @@ const shows = [
     {
         "id": 6,
         "title": "country crossroads",
-        "url": orlando,
+        "image": orlando,
         "price": 14,
         "quantity": 1,
         "city": "Orlando",

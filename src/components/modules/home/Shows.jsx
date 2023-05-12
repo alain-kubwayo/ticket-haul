@@ -27,7 +27,7 @@ const Shows = () => {
             >
               <div className="h-40 md:h-[130px] block">
                 <img
-                  src={upcomingShow.url}
+                  src={upcomingShow.image}
                   alt=""
                   className="object-cover h-full w-full rounded-[3px]"
                 />
