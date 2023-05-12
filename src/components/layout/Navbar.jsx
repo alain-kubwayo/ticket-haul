@@ -5,10 +5,11 @@ import { ReactComponent as Cart } from "../../assets/svgs/cart.svg";
 
 const Navbar = () => {
   const { cart } = useCart();
-  const numberOfItemsInInCart = cart?.items?.reduce((a, b) => a + b.quantity, 0);
+  const numberOfItemsInInCart = cart?.items?.reduce((a, b) => a + b.quantity, 0) || 0;
+  console.log(numberOfItemsInInCart)
   
   return (
-    <nav>
+    <nav className="sticky top-0 z-50 bg-white">
       <PageWrapper>
         <div className="flex flex-col items-center justify-center sm:flex-row sm:items-center sm:justify-between">
           <Link to="/">

@@ -12,7 +12,6 @@ const Shows = () => {
 
   const { setcart, cart } = useCart();
 
-  console.log(cart);
   return (
     <div className="py-20">
       <PageWrapper>
