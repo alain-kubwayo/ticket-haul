@@ -51,7 +51,6 @@ const Invoice = () => {
       <div className="border border-slate-300 bg-white py-6 rounded-[3px]">
         <div className="py-2 rounded-[3px] p-2 px-4 flex flex-col gap-y-2">
           <div className="flex items-center justify-between text-xl font-semibold text-gray-700">
-            {paymentProcessing && <div>Loading...</div>}
             <h3>Total</h3>
             <div className="flex items-center gap-x-1">
               <p>${total.toFixed(2)}</p>
