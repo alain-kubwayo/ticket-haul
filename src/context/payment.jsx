@@ -34,7 +34,6 @@ export const PaymentProvider = ({ children }) => {
   };
 
   const updateCard = (data) => {
-    console.log({ updatedData: { ...data, ...cardInfo } });
     const existingPayments =
       JSON.parse(localStorage.getItem("payment")) || [];
     const updatedPayments = existingPayments.map((payment) => {
@@ -71,7 +70,6 @@ export const PaymentProvider = ({ children }) => {
     localStorage.setItem("payment", updatedPayments);
 
     // update the existing payment in the app state
-    console.log("submit", [{ ...data, ...cardInfo }]);
     setPayment((prev) => {
       if (prev) return [...prev, newPaymentCard];
       return [newPaymentCard];

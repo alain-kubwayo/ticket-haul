@@ -15,8 +15,6 @@ const Invoice = () => {
   const [paymentProcessing, setPaymentProcessing] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  console.log(cart);
-
 
   const handleClick = () => setIsOpen(!isOpen);
 
