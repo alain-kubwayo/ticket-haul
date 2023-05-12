@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useCart } from "../../../context/cart";
-import { ArrowDown, ArrowUp } from "../../common/ArrowUp";
+import { ReactComponent as ArrowUp } from "../../../assets/svgs/arrow-up.svg";
+import { ReactComponent as ArrowDown } from "../../../assets/svgs/arrow-down.svg";
 import { usePayment } from "../../../context/payment";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../common/Modal";
@@ -15,13 +16,10 @@ const Invoice = () => {
   const [showModal, setShowModal] = useState(false);
 
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  }
+  const handleClick = () => setIsOpen(!isOpen);
 
-  const handleChecked = () => {
-    setIsChecked(!isChecked);
-  }
+  const handleChecked = () => setIsChecked(!isChecked);
+  
 
   const total = 
     cart?.items
@@ -103,12 +101,12 @@ const Invoice = () => {
             </div>
             <button 
               onClick={handlePlaceOrder}
-              className={`px-3.5 py-2  text-base text-white rounded-sm ${isChecked && payment?.length ? "bg-[#148016]":'bg-[#148016]/40 cursor-not-allowed'}`}
+              className={`px-3.5 py-2  text-base text-white rounded-sm ${isChecked && payment?.length ? "bg-primary-150":'bg-primary-150/40 cursor-not-allowed'}`}
               disabled={!isChecked}
             >
               Place Order
             </button>
-            <p className="text-[10px] font-semibold">
+            <p className="text-xs font-semibold">
               *Exceptions may apply, see our Terms of Use.
             </p>
           </div>

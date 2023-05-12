@@ -4,7 +4,7 @@ import { Oval } from "react-loader-spinner";
 const Modal = ({ paymentProcessing }) => {
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black/60">
-      <div className="px-6 py-4 bg-[#5F6AF6]/90  bg-gradient-to-b w-11/12 sm:max-w-[400px] lg:max-w-[600px] mt-[40%] md:mt-[30%] lg:mt-[20%] mx-auto rounded-xl">
+      <div className="px-6 py-4 bg-primary-100/90  bg-gradient-to-b w-11/12 sm:max-w-[400px] lg:max-w-[600px] mt-[40%] md:mt-[30%] lg:mt-[20%] mx-auto rounded-xl">
         <h1 className="text-lg font-semibold text-center text-white uppercase sm:text-2xl">
           {paymentProcessing ? "Payment Processing..." : "Paymen Processed!"}
         </h1>

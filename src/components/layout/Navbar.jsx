@@ -12,7 +12,7 @@ const Navbar = () => {
       <PageWrapper>
         <div className="flex flex-col items-center justify-center sm:flex-row sm:items-center sm:justify-between">
           <Link to="/">
-            <h1 className="relative text-[#5F6AF6] font-extrabold text-2xl py-4 pr-0 pl-2 before:content-[''] before:absolute before:left-[40%] before:bottom-[16px] before:-z-10 before:w-[100px] before:h-[10px] before:bg-indigo-300/50 before:transform before:-skew-x-12 before:-translate-x-1/2">
+            <h1 className="relative text-primary-100 font-extrabold text-2xl py-4 pr-0 pl-2 before:content-[''] before:absolute before:left-[40%] before:bottom-4 before:-z-10 before:w-25 before:h-2.5 before:bg-indigo-300/50 before:transform before:-skew-x-12 before:-translate-x-1/2">
               Ticket Haul
             </h1>
           </Link>

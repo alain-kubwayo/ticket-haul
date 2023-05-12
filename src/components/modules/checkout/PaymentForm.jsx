@@ -27,11 +27,10 @@ const PaymentForm = () => {
   } = usePaymentInputs();
 
   const {
-    onSubmitPayement,
-    handlePayementFormInput,
-    // cardInfo,
+    onSubmitPayment,
+    handlePaymentFormInput,
     country,
-    handleNoPayementFormInputs,
+    handleNoPaymentFormInputs,
     setIsOpenPaymentForm,
     cardToEdit,
   } = usePayment();
@@ -41,7 +40,7 @@ const PaymentForm = () => {
       onSubmit={handleSubmit((data) => {
         if (meta.error !== undefined) return;
         setIsOpenPaymentForm(false);
-        onSubmitPayement({ ...data, id: cardToEdit.id });
+        onSubmitPayment({ ...data, id: cardToEdit.id });
       })}
     >
       <div className="flex mt-2 mb-4">
@@ -77,7 +76,7 @@ const PaymentForm = () => {
             name="cardNumber"
             defaultValue={cardToEdit.cardNumber}
             {...getCardNumberProps({
-              onChange: handlePayementFormInput,
+              onChange: handlePaymentFormInput,
             })}
           />
         </PaymentInputsWrapper>
@@ -93,7 +92,7 @@ const PaymentForm = () => {
               name="expiryDate"
               defaultValue={cardToEdit.expiryDate || ""}
               {...getExpiryDateProps({
-                onChange: handlePayementFormInput,
+                onChange: handlePaymentFormInput,
               })}
             />
           </label>
@@ -107,7 +106,7 @@ const PaymentForm = () => {
               defaultValue={cardToEdit.cvc}
               className="py-2 pl-4 pr-8 border outline-none border-slate-300"
               {...getCVCProps({
-                onChange: handlePayementFormInput,
+                onChange: handlePaymentFormInput,
               })}
             />
           </label>
@@ -137,7 +136,7 @@ const PaymentForm = () => {
             value: cardToEdit.country || country,
             validate: () => Boolean(country) || "Country is required",
           })}
-          onChange={handleNoPayementFormInputs}
+          onChange={handleNoPaymentFormInputs}
         >
           <option value=""></option>
           <option value="AO">Angola</option>
@@ -222,7 +221,7 @@ const PaymentForm = () => {
           )}
         </label>
       </div>
-      <div className="flex justify-center lg:justify-end gap-x-4">
+      <div className="flex justify-center mt-4 lg:justify-end gap-x-4">
         <button
           onClick={() => {
             setIsOpenPaymentForm(false);
@@ -232,7 +231,7 @@ const PaymentForm = () => {
         </button>
         <button
           type="submit"
-          className="hover:bg-[#026CDF]/50 bg-[#026CDF] py-2 px-4 text-white rounded-sm text-base"
+          className="px-4 py-2 text-base text-white rounded-sm hover:bg-primary-200/50 bg-primary-200"
         >
           Add new card
         </button>

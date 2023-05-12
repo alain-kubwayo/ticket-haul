@@ -4,8 +4,9 @@ import { ReactComponent as Card } from "../../../assets/svgs/card.svg";
 import { usePayment } from "../../../context/payment";
 
 const CardInfo = () => {
-  const [isCorrectCvc, setCorrectCvc] = useState({status: false, id: ""});
-  const { payment, deletePayment, setIsOpenPaymentForm, setCardToEdit } = usePayment();
+  const [isCorrectCvc, setCorrectCvc] = useState({ status: false, id: "" });
+  const { payment, deletePayment, setIsOpenPaymentForm, setCardToEdit } =
+    usePayment();
 
   return (
     <>
@@ -29,13 +30,13 @@ const CardInfo = () => {
                     }
                   </h3>
                   <p>
-                    {p?.cardName} | exp. {p?.expiryDate.split(' ').join('')}{" "}
+                    {p?.cardName} | exp. {p?.expiryDate.split(" ").join("")}{" "}
                   </p>
                   <div>
                     <button
                       onClick={() => {
-                        setIsOpenPaymentForm(true)
-                        setCardToEdit(p)
+                        setIsOpenPaymentForm(true);
+                        setCardToEdit(p);
                       }}
                       className="pr-2 border-r border-black text-[#026CDF]"
                     >
@@ -64,11 +65,19 @@ const CardInfo = () => {
                         maxLength={3}
                         onChange={(e) =>
                           e.target.value === p.cvc
-                            ? setCorrectCvc((prev) => ({...prev, id: p.id, status: true}))
-                            : setCorrectCvc((prev) => ({...prev, id: p.id, status: false}))
+                            ? setCorrectCvc((prev) => ({
+                                ...prev,
+                                id: p.id,
+                                status: true,
+                              }))
+                            : setCorrectCvc((prev) => ({
+                                ...prev,
+                                id: p.id,
+                                status: false,
+                              }))
                         }
                       />
-                      {isCorrectCvc.status && isCorrectCvc.id === p?.id &&(
+                      {isCorrectCvc.status && isCorrectCvc.id === p?.id && (
                         <Checkmark className="absolute w-5 h-auto right-5 inset-y-1/4" />
                       )}
                     </div>
@@ -77,7 +86,7 @@ const CardInfo = () => {
                 <Card className="mt-8 ml-4" />
                 <p className="mt-8 ml-4 text-xs">3-digits on back of card</p>
               </div>
-              {!isCorrectCvc.status  && isCorrectCvc.id !== p?.id &&(
+              {!isCorrectCvc.status && isCorrectCvc.id !== p?.id && (
                 <p className="text-sm text-red-400">
                   Please enter your card security code
                 </p>

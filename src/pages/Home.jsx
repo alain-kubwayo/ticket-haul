@@ -1,5 +1,5 @@
-import Hero from "../components/modules/Hero";
-import Shows from "../components/modules/Shows";
+import Hero from "../components/modules/home/Hero";
+import Shows from "../components/modules/home/Shows";
 
 const Home = () => {
     return ( 

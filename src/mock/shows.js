@@ -2,7 +2,7 @@ const shows = [
     {
         "id": 1,
         "title": "the great gigantic gala",
-        "url": "../src/assets/london.jpeg",
+        "url": "../src/assets/images/london.jpeg",
         "price": 23,
         "quantity": 1,
         "city": "London",
@@ -11,7 +11,7 @@ const shows = [
     {
         "id": 2,
         "title": "amazing acrobats",
-        "url": "../src/assets/auckland.jpeg",
+        "url": "../src/assets/images/auckland.jpeg",
         "price": 19,
         "quantity": 1,
         "city": "Auckland",
@@ -20,7 +20,7 @@ const shows = [
     {
         "id": 3,
         "title": "fabulous fireworks frenzy",
-        "url": "../src/assets/vancouver.jpeg",
+        "url": "../src/assets/images/vancouver.jpeg",
         "price": 12,
         "quantity": 1,
         "city": "Vancouver",
@@ -29,7 +29,7 @@ const shows = [
     {
         "id": 4,
         "title": "epic entertainment extravaganza",
-        "url": "../src/assets/liverpool.jpeg",
+        "url": "../src/assets/images/liverpool.jpeg",
         "price": 11,
         "quantity": 1,
         "city": "Liverpool",
@@ -38,7 +38,7 @@ const shows = [
     {
         "id": 5,
         "title": "rockin' the night away",
-        "url": "../src/assets/lagos.jpeg",
+        "url": "../src/assets/images/lagos.jpeg",
         "price": 8.5,
         "quantity": 1,
         "city": "Lagos",
@@ -47,7 +47,7 @@ const shows = [
     {
         "id": 6,
         "title": "country crossroads",
-        "url": "../src/assets/orlando.jpeg",
+        "url": "../src/assets/images/orlando.jpeg",
         "price": 14,
         "quantity": 1,
         "city": "Orlando",

@@ -13,32 +13,32 @@ export const PaymentProvider = ({ children }) => {
 
   const [country, setCountry] = useState("");
   const [payment, setPayment] = useState(
-    () => JSON.parse(localStorage.getItem("payement")) || []
+    () => JSON.parse(localStorage.getItem("payment")) || []
   );
 
-  const handlePayementFormInput = useCallback((event) => {
+  const handlePaymentFormInput = useCallback((event) => {
     setCardInfo((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
   }, []);
 
-  const handleNoPayementFormInputs = useCallback((event) => {
+  const handleNoPaymentFormInputs = useCallback((event) => {
     setCountry(event.target.value);
   }, []);
 
   const deletePayment = (pay) => {
     const filtered = payment.filter((e) => e.id !== pay.id);
     setPayment(filtered);
-    localStorage.setItem("payement", JSON.stringify(filtered));
+    localStorage.setItem("payment", JSON.stringify(filtered));
   };
 
   const updateCard = (data) => {
     console.log({ updatedData: { ...data, ...cardInfo } });
-    const existingPayements =
-      JSON.parse(localStorage.getItem("payement")) || [];
-    const updatedPayments = existingPayements.map((payement) => {
-      if (payement.id !== data.id) return payement;
+    const existingPayments =
+      JSON.parse(localStorage.getItem("payment")) || [];
+    const updatedPayments = existingPayments.map((payment) => {
+      if (payment.id !== data.id) return payment;
       return {
         cardName: data.cardName || cardToEdit.name,
         cardNumber: cardInfo.cardNumber || cardToEdit.cardNumber,
@@ -53,32 +53,32 @@ export const PaymentProvider = ({ children }) => {
       };
     });
 
-    localStorage.setItem("payement", JSON.stringify(updatedPayments));
+    localStorage.setItem("payment", JSON.stringify(updatedPayments));
     setPayment(updatedPayments);
     setCardToEdit({});
   };
 
   const createCard = (data) => {
-    // update the existing payement in the local storage
-    const existingPayements =
-      JSON.parse(localStorage.getItem("payement")) || [];
-    const newPayementCard =   { ...data, ...cardInfo, id: payment?.length + 1 }
+    // update the existing payment in the local storage
+    const existingPayments =
+      JSON.parse(localStorage.getItem("payment")) || [];
+    const newPaymentCard =   { ...data, ...cardInfo, id: payment?.length + 1 }
 
-    const updatedPayements = JSON.stringify([
-      ...existingPayements,
-      newPayementCard,
+    const updatedPayments = JSON.stringify([
+      ...existingPayments,
+      newPaymentCard,
     ]);
-    localStorage.setItem("payement", updatedPayements);
+    localStorage.setItem("payment", updatedPayments);
 
-    // update the existing payement in the app state
+    // update the existing payment in the app state
     console.log("submit", [{ ...data, ...cardInfo }]);
     setPayment((prev) => {
-      if (prev) return [...prev, newPayementCard];
-      return [newPayementCard];
+      if (prev) return [...prev, newPaymentCard];
+      return [newPaymentCard];
     });
   };
 
-  const onSubmitPayement = (data) => {
+  const onSubmitPayment = (data) => {
     if (data.id) updateCard(data);
     else createCard(data);
   };
@@ -89,9 +89,9 @@ export const PaymentProvider = ({ children }) => {
         cardInfo,
         payment,
         setPayment,
-        handlePayementFormInput,
-        handleNoPayementFormInputs,
-        onSubmitPayement,
+        handlePaymentFormInput,
+        handleNoPaymentFormInputs,
+        onSubmitPayment,
         country,
         isOpenPaymentForm,
         setIsOpenPaymentForm,
