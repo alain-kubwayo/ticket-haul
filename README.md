@@ -24,6 +24,15 @@ A project which implements a mock checkout page for buying tickets to a show usi
 
 Ticket Haul is a ticket purchasing frontend project in which a mock checkout page for buying tickets to a show is implemented. Users have the ability to select a show from a list of upcoming shows, select the quantity, and enter their basic billing information and finally see the final cost with fees before checking out. While the real credit card data is not processed, the project simulates how this process would work in an actual project.
 
+## Hosted Version
+Click [here](https://ticket-haul.vercel.app/) to view the project live, hosted on Vercel.
+
+
+## Technologies
+
+* React
+* TailwindCSS
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Installation
