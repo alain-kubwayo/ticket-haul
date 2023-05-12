@@ -7,7 +7,7 @@ const CardInfo = () => {
   const [isCorrectCvc, setCorrectCvc] = useState({ status: false, id: "" });
   const { payment, deletePayment, setIsOpenPaymentForm, setCardToEdit } =
     usePayment();
-    const [selectedCard, setSelectedCard] = useState(payment[0].id);
+    const [selectedCard, setSelectedCard] = useState(payment[0]?.id);
 
   return (
     <>

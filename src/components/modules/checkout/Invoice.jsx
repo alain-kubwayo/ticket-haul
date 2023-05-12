@@ -15,6 +15,8 @@ const Invoice = () => {
   const [paymentProcessing, setPaymentProcessing] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+  console.log(cart);
+
 
   const handleClick = () => setIsOpen(!isOpen);
 
@@ -63,25 +65,23 @@ const Invoice = () => {
             <div>
               <div>
                 <h4 className="mb-2 text-base font-semibold">Tickets</h4>
-                <div className="flex justify-between text-sm">
-                  <p>Verified Resale Tickets: $190.00 x 4</p>
-                  <p>$760.00</p>
-                </div>
+                {cart?.items?.map( item => (
+                <div className="flex justify-between my-2 text-sm" key={item.id}>
+                  <p>{item.title.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}: ${item.price} x {item.quantity}</p>
+                  <p>${(item.price * item.quantity).toFixed(2)}</p>
+                </div>))}
               </div>
               <div>
                 <h4 className="mb-2 text-base font-semibold">Fees</h4>
                 <div className="flex justify-between text-sm">
-                  <p>Service Fee: $36.10 x 4</p>
-                  <p>$144.40</p>
+                  <p>Service Fee: $0.00</p>
+                  <p>$0.00</p>
                 </div>
                 <div className="flex justify-between text-sm">
                   <p>Order Processing Fee</p>
-                  <p>$2.95</p>
+                  <p>$0.00</p>
                 </div>
               </div>
-              <a href="#" className="text-[#026CDF] text-sm font-semibold">
-                Cancel Order
-              </a>
             </div>
           )}
 
@@ -95,7 +95,7 @@ const Invoice = () => {
               />
               <label>
                 I have read and agree to the current{" "}
-                <span className="text-[#026CDF]">Terms of Use</span>.
+                <span className="text-primary-200">Terms of Use</span>.
               </label>
             </div>
             <button 
